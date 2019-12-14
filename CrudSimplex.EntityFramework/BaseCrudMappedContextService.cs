@@ -78,7 +78,7 @@ namespace CrudSimplex.EntityFramework
 
 		public virtual TEntity GetEntity(string id) => FetchSingleEntity(id).Single();
 		protected virtual Func<string, IQueryable<TEntity>> FetchSingleEntity => id =>
-			FullElements.Where(ExtraUserDynamicFilter).Where(EntityComparer, id);
+			((IQueryable<TEntity>)FullElements.Where(ExtraUserDynamicFilter)).Where(EntityComparer, id);
 		protected virtual TEntity Merge(TModel model = default, TEntity entity = default) => _mapper.Map(model, entity);
 
 		protected virtual void GenerateIdentifier(TEntity entity)
