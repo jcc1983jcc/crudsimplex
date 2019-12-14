@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace CrudSimplex.EntityFramework
 {
-	public abstract class BaseCrudQueryableContextService<TModel, TEntity> : ICrudBaseService<TModel> where TEntity : class
+	public abstract class BaseCrudMappedContextService<TModel, TEntity> : ICrudBaseService<TModel> where TEntity : class
 	{
 		private readonly IMapper _mapper;
 		private readonly DbContext _dbContext;
@@ -22,7 +22,7 @@ namespace CrudSimplex.EntityFramework
 		protected virtual string EntityComparer => $"{EntityKey} == @0";
 		protected virtual bool GenerateGuidOnCreate => false;
 
-		protected BaseCrudQueryableContextService(IMapper mapper, DbContext dbContext)
+		protected BaseCrudMappedContextService(IMapper mapper, DbContext dbContext)
 		{
 			_mapper = mapper;
 			_dbContext = dbContext;
